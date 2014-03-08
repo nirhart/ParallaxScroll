@@ -64,9 +64,8 @@ public class ParallaxScrollView extends ScrollView {
 	protected void onScrollChanged(int l, int t, int oldl, int oldt) {
 		super.onScrollChanged(l, t, oldl, oldt);
 		float factor = parallaxFactor;
-		float offset = 0;
 		for (ParallaxedView parallaxedView : parallaxedViews) {
-			parallaxedView.setOffset((float)t / factor + offset);
+			parallaxedView.setOffset((float)t / factor);
 			factor *= innerParallaxFactor;
 		}
 	}

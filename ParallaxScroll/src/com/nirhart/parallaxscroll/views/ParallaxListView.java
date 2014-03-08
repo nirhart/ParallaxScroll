@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.ListView;
 
 import com.nirhart.parallaxscroll.R;
@@ -88,6 +89,23 @@ public class ParallaxListView extends ListView {
 			} else {
 				parallaxedView = new ParallaxedListView(getChildAt(0));
 			}
+		}
+	}
+	
+	public class ParallaxedListView extends ParallaxedView {
+
+		public ParallaxedListView(View view) {
+			super(view);
+		}
+
+		@Override
+		protected void translatePreICS(View view, float offset) {
+			TranslateAnimation ta = new TranslateAnimation(0, 0, lastOffset, offset);
+			ta.setDuration(0);
+			ta.setFillAfter(true);
+			view.setAnimation(ta);
+			ta.start();
+			lastOffset = (int)offset;
 		}
 	}
 }

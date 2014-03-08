@@ -6,8 +6,8 @@
     android:gravity="center" >
     
     <Button
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="Scroll view single parallaxed item"
@@ -15,8 +15,8 @@
         tools:ignore="HardcodedText" />
 
     <Button
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="Scroll view three parallaxed item"
@@ -24,8 +24,8 @@
         tools:ignore="HardcodedText" />
     
     <Button
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="List view single parallaxed item"
@@ -33,8 +33,8 @@
         tools:ignore="HardcodedText" />
 
     <Button
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="List view circular parallaxed item"

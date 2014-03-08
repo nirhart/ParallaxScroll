@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
@@ -67,10 +67,20 @@ public class ParallaxScrollView extends ScrollView {
 		float offset = 0;
 		for (ParallaxedView parallaxedView : parallaxedViews) {
 			parallaxedView.setOffset((float)t / factor + offset);
-			Log.d("aaa", "a = " + ((float)t / factor));
 			factor *= innerParallaxFactor;
-//			if (ParallaxedView.isAPI11)
-//				offset += parallaxedView.getHeight(); 
+		}
+	}
+	
+	public class ParallaxedScrollView extends ParallaxedView{
+
+		public ParallaxedScrollView(View view) {
+			super(view);
+		}
+
+		@Override
+		protected void translatePreICS(View view, float offset) {
+			view.offsetTopAndBottom((int)offset - lastOffset);
+			lastOffset = (int)offset;
 		}
 	}
 }

@@ -1,12 +1,14 @@
 package com.nirhart.parallaxscrollexample;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.nirhart.parallaxscroll.views.ParallaxListView;
@@ -31,37 +33,19 @@ public class SingleParallaxListView extends Activity {
 		listView.addParallaxedHeaderView(v);
 	}
 	
-	public class CustomAdapter extends BaseAdapter {
-
-		private LayoutInflater inflater;
-
-		public CustomAdapter(LayoutInflater inflater) {
-			this.inflater = inflater;
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.action_github) {
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nirhart/ParallaxScroll#usage"));
+			startActivity(browserIntent);
 		}
-		
-		@Override
-		public int getCount() {
-			return 20;
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return null;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return 0;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			TextView textView = (TextView) convertView;
-			if (textView == null)
-				textView = (TextView) inflater.inflate(R.layout.item, null);
-			textView.setText("Item " + position);
-			return textView;
-		}
-		
+		return true;
 	}
 }

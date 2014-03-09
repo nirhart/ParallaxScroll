@@ -21,7 +21,6 @@ public class SingleParallaxListView extends Activity {
 		setContentView(R.layout.list_one_parallax);
 		ParallaxListView listView = (ParallaxListView) findViewById(R.id.list_view);
 		CustomAdapter adapter = new CustomAdapter(LayoutInflater.from(this));
-		listView.setAdapter(adapter);
 		
 		TextView v = new TextView(this);
 		v.setText("PARALLAXED");
@@ -31,6 +30,7 @@ public class SingleParallaxListView extends Activity {
 		v.setBackgroundResource(R.drawable.item_background);
 		
 		listView.addParallaxedHeaderView(v);
+		listView.setAdapter(adapter);
 	}
 	
 	@Override

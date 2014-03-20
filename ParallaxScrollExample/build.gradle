@@ -35,4 +35,5 @@ android {
 dependencies {
     // internal deps (the sub projects dependencies are transitive to this one)
     compile project(':ParallaxScroll')
+    compile 'com.android.support:support-v4:19.0.1'
 }

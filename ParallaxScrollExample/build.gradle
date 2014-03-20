@@ -1,0 +1,38 @@
+apply plugin: 'android'
+
+android {
+    defaultConfig {
+        versionCode 3
+        versionName '1.2'
+
+        minSdkVersion 8
+        targetSdkVersion 19
+    }
+
+    compileSdkVersion 19
+    buildToolsVersion '19.0.2'
+
+    sourceSets {
+        main {
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+            java {
+                srcDir 'src'
+            }
+            res {
+                srcDir 'res'
+            }
+            assets {
+                srcDir 'assets'
+            }
+            resources {
+                srcDir 'src'
+            }
+        }
+    }
+}
+dependencies {
+    // internal deps (the sub projects dependencies are transitive to this one)
+    compile project(':ParallaxScroll')
+}

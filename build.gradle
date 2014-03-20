@@ -1,0 +1,17 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.9.+'
+    }
+}
+
+apply plugin: 'android-reporting'
+
+/**
+ * Task to generate a gradle wrapper.
+ */
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}

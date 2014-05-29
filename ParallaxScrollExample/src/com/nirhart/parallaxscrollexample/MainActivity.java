@@ -31,6 +31,16 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, SingleParallaxListView.class);
 		startActivity(intent);
 	}
+
+	public void onSingleExpandableListParallaxClicked(View v) {
+		Intent intent = new Intent(this, SingleParallaxExpandableListView.class);
+		startActivity(intent);
+	}
+
+	public void onMultipleExpandableListParallaxClicked(View v) {
+		Intent intent = new Intent(this, MultipleParallaxExpandableListView.class);
+		startActivity(intent);
+	}
 	
 	public void onMultipleListParallaxClicked(View v) {
 		Intent intent = new Intent(this, MultipleParallaxListView.class);
@@ -47,7 +57,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.action_github) {
-			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nirhart/ParallaxScroll#usage"));
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nirhart/ParallaxScroll"));
 			startActivity(browserIntent);
 		}
 		return true;

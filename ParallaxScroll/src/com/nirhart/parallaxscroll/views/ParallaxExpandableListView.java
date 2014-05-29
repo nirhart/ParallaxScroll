@@ -3,18 +3,18 @@ package com.nirhart.parallaxscroll.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 
-public class ParallaxListView extends ListView {
+public class ParallaxExpandableListView extends ExpandableListView {
 
 	private ParallaxListViewHelper helper;
 
-	public ParallaxListView(Context context, AttributeSet attrs, int defStyle) {
+	public ParallaxExpandableListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(context, attrs);
 	}
 
-	public ParallaxListView(Context context, AttributeSet attrs) {
+	public ParallaxExpandableListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, attrs);
 	}

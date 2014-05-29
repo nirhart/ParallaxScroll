@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="5"
+    android:versionName="1.5"
     package="com.nirhart.parallaxscrollexample">
 
     <uses-sdk
@@ -21,6 +23,16 @@
             </intent-filter>
         </activity>
 
+        <activity 
+            android:name="com.nirhart.parallaxscrollexample.MultipleParallaxExpandableListView"
+            android:label="@string/app_name" >
+        </activity>
+        
+        <activity 
+            android:name="com.nirhart.parallaxscrollexample.SingleParallaxExpandableListView"
+            android:label="@string/app_name" >
+        </activity>
+        
         <activity 
             android:name="com.nirhart.parallaxscrollexample.SingleParallaxListView"
             android:label="@string/app_name" >

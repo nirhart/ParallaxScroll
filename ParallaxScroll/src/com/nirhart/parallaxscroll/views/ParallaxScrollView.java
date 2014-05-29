@@ -54,7 +54,7 @@ public class ParallaxScrollView extends ScrollView {
 			ViewGroup viewsHolder = (ViewGroup) getChildAt(0);
 			int numOfParallaxViews = Math.min(this.numOfParallaxViews, viewsHolder.getChildCount());
 			for (int i = 0; i < numOfParallaxViews; i++) {
-				ParallaxedView parallaxedView = new ParallaxedScrollView(viewsHolder.getChildAt(i));
+				ParallaxedView parallaxedView = new ScrollViewParallaxedItem(viewsHolder.getChildAt(i));
 				parallaxedViews.add(parallaxedView);
 			}
 		}
@@ -70,9 +70,9 @@ public class ParallaxScrollView extends ScrollView {
 		}
 	}
 	
-	public class ParallaxedScrollView extends ParallaxedView{
+	protected class ScrollViewParallaxedItem extends ParallaxedView{
 
-		public ParallaxedScrollView(View view) {
+		public ScrollViewParallaxedItem(View view) {
 			super(view);
 		}
 

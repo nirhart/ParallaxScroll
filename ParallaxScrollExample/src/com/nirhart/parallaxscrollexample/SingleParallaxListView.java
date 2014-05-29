@@ -20,7 +20,7 @@ public class SingleParallaxListView extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_one_parallax);
 		ParallaxListView listView = (ParallaxListView) findViewById(R.id.list_view);
-		CustomAdapter adapter = new CustomAdapter(LayoutInflater.from(this));
+		CustomListAdapter adapter = new CustomListAdapter(LayoutInflater.from(this));
 		
 		TextView v = new TextView(this);
 		v.setText("PARALLAXED");
@@ -43,7 +43,7 @@ public class SingleParallaxListView extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.action_github) {
-			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nirhart/ParallaxScroll#usage"));
+			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nirhart/ParallaxScroll"));
 			startActivity(browserIntent);
 		}
 		return true;

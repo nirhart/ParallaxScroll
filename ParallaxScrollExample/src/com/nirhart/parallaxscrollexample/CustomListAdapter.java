@@ -6,11 +6,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class CustomAdapter extends BaseAdapter {
+public class CustomListAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
 
-	public CustomAdapter(LayoutInflater inflater) {
+	public CustomListAdapter(LayoutInflater inflater) {
 		this.inflater = inflater;
 	}
 

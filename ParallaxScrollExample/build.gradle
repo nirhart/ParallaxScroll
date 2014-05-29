@@ -2,8 +2,8 @@ apply plugin: 'android'
 
 android {
     defaultConfig {
-        versionCode 3
-        versionName '1.2'
+        versionCode 5
+        versionName '1.5'
 
         minSdkVersion 8
         targetSdkVersion 19

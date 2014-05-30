@@ -6,6 +6,8 @@ Parallax Scrolls
 * ScrollView with one or more parallaxed views.
 * ListView with parallaxed header.
 * Complete parallaxed ListView.
+* ExpandableListView with parallaxed header.
+* Complete parallaxed ExpandableListView.
 * Support Android 1.6 and above.
 
 ## Usage

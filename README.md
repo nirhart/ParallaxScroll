@@ -10,10 +10,12 @@ Parallax Scrolls
 
 ## Usage
 ### See demo app for best practice - https://play.google.com/store/apps/details?id=com.nirhart.parallaxscrollexample
-* parallax_factor - For ScrollView and ListView, the first view's parallax factor.
+* parallax_factor - For ScrollView and ListView, the first view's parallax facto
 * inner_parallax_factor - For ScrollView only - the parallax factor between each view and view.
 * parallax_views_num - For ScrollView only - the number of parallaxed views.
 * circular_parallax - For ListView only - whether all of the list is parallaxed or not.
+
+## The latest jar can be download [here](https://github.com/nirhart/ParallaxScroll/blob/master/parallax_scroll_1.5.jar)
 
 ## Building
 

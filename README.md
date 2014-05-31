@@ -17,8 +17,6 @@ Parallax Scrolls
 * parallax_views_num - For ScrollView only - the number of parallaxed views.
 * circular_parallax - For ListView only - whether all of the list is parallaxed or not.
 
-## The latest jar can be download [here](jars/)
-
 ## Building
 
 ### Using gradle to build.

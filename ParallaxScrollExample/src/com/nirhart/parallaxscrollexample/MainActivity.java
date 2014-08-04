@@ -21,6 +21,11 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, SingleParallaxScrollView.class);
 		startActivity(intent);
 	}
+
+	public void onSingleScrollParallaxAlphaClicked(View v) {
+		Intent intent = new Intent(this, SingleParallaxAlphaScrollView.class);
+		startActivity(intent);
+	}
 	
 	public void onMultipleScrollParallaxClicked(View v) {
 		Intent intent = new Intent(this, MultipleParallaxScrollView.class);

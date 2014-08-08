@@ -1,14 +1,15 @@
 package com.nirhart.parallaxscroll.views;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
-import com.nirhart.parallaxscroll.R;
 
-import java.util.ArrayList;
+import com.nirhart.parallaxscroll.R;
 
 
 
@@ -17,7 +18,7 @@ public class ParallaxScrollView extends ScrollView {
 	private static final int DEFAULT_PARALLAX_VIEWS = 1;
 	private static final float DEFAULT_INNER_PARALLAX_FACTOR = 1.9F;
 	private static final float DEFAULT_PARALLAX_FACTOR = 1.9F;
-	private static final float DEFAULT_ALPHA_FACTOR = 1/100F;
+	private static final float DEFAULT_ALPHA_FACTOR = -1F;
 	private int numOfParallaxViews = DEFAULT_PARALLAX_VIEWS;
 	private float innerParallaxFactor = DEFAULT_PARALLAX_FACTOR;
 	private float parallaxFactor = DEFAULT_PARALLAX_FACTOR;
@@ -72,12 +73,15 @@ public class ParallaxScrollView extends ScrollView {
 		for (ParallaxedView parallaxedView : parallaxedViews) {
 			parallaxedView.setOffset((float)t / parallax);
 			parallax *= innerParallaxFactor;
-			parallaxedView.setAlpha(100 / ((float)t * alpha));
-			alpha *= alphaFactor;
+			if (alpha != DEFAULT_ALPHA_FACTOR) {
+				parallaxedView.setAlpha(100 / ((float)t * alpha));
+				alpha /= alphaFactor;
+			}
+			parallaxedView.animateNow();
 		}
 	}
 	
-	protected class ScrollViewParallaxedItem extends ParallaxedView{
+	protected class ScrollViewParallaxedItem extends ParallaxedView {
 
 		public ScrollViewParallaxedItem(View view) {
 			super(view);

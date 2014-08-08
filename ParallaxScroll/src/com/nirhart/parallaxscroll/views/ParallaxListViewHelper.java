@@ -13,9 +13,11 @@ import com.nirhart.parallaxscroll.R;
 
 public class ParallaxListViewHelper implements OnScrollListener {
 
+	private static final float DEFAULT_ALPHA_FACTOR = -1F;
 	private static final float DEFAULT_PARALLAX_FACTOR = 1.9F;
 	private static final boolean DEFAULT_IS_CIRCULAR = false;
 	private float parallaxFactor = DEFAULT_PARALLAX_FACTOR;
+	private float alphaFactor = DEFAULT_ALPHA_FACTOR;
 	private ParallaxedView parallaxedView;
 	private boolean isCircular;
 	private OnScrollListener listener = null;
@@ -29,6 +31,7 @@ public class ParallaxListViewHelper implements OnScrollListener {
 		this.listView = listView;
 		TypedArray typeArray = context.obtainStyledAttributes(attrs, R.styleable.ParallaxScroll);
 		this.parallaxFactor = typeArray.getFloat(R.styleable.ParallaxScroll_parallax_factor, DEFAULT_PARALLAX_FACTOR);
+		this.alphaFactor = typeArray.getFloat(R.styleable.ParallaxScroll_alpha_factor, DEFAULT_ALPHA_FACTOR);
 		this.isCircular = typeArray.getBoolean(R.styleable.ParallaxScroll_circular_parallax, DEFAULT_IS_CIRCULAR);
 		typeArray.recycle();
 	}
@@ -59,9 +62,10 @@ public class ParallaxListViewHelper implements OnScrollListener {
 	private void circularParallax() {
 		if (listView.getChildCount() > 0) {
 			int top = -listView.getChildAt(0).getTop();
-			float factor = parallaxFactor;
-			fillParallaxedViews();
-			parallaxedView.setOffset((float)top / factor);
+			if (top >= 0) {
+				fillParallaxedViews();
+				setFilters(top);
+			}
 		}
 	}
 
@@ -69,21 +73,36 @@ public class ParallaxListViewHelper implements OnScrollListener {
 		if (parallaxedView != null) {
 			if (listView.getChildCount() > 0) {
 				int top = -listView.getChildAt(0).getTop();
-				float factor = parallaxFactor;
-				parallaxedView.setOffset((float)top / factor);
+				if (top >= 0) {
+					setFilters(top);
+				}
 			}
 		}
+	}
+
+	private void setFilters(int top) {
+		parallaxedView.setOffset((float)top / parallaxFactor);
+		if (alphaFactor != DEFAULT_ALPHA_FACTOR)
+			parallaxedView.setAlpha(100 / ((float)top * alphaFactor));
+		parallaxedView.animateNow();
 	}
 
 	private void fillParallaxedViews() {
 		if (parallaxedView == null || parallaxedView.is(listView.getChildAt(0)) == false) {
 			if (parallaxedView != null) {
-				parallaxedView.setOffset(0);
+				resetFilters();
 				parallaxedView.setView(listView.getChildAt(0));
 			} else {
 				parallaxedView = new ListViewParallaxedItem(listView.getChildAt(0));
 			}
 		}
+	}
+
+	private void resetFilters() {
+		parallaxedView.setOffset(0);
+		if (alphaFactor != DEFAULT_ALPHA_FACTOR)
+			parallaxedView.setAlpha(1F);
+		parallaxedView.animateNow();
 	}
 	
 	@Override
@@ -104,14 +123,10 @@ public class ParallaxListViewHelper implements OnScrollListener {
 		public ListViewParallaxedItem(View view) {
 			super(view);
 		}
-
+		
 		@Override
 		protected void translatePreICS(View view, float offset) {
-			TranslateAnimation ta = new TranslateAnimation(0, 0, offset, offset);
-			ta.setDuration(0);
-			ta.setFillAfter(true);
-			view.setAnimation(ta);
-			ta.start();
+			addAnimation(new TranslateAnimation(0, 0, offset, offset));
 		}
 	}
 }

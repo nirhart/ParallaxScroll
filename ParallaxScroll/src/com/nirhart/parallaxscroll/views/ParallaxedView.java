@@ -1,10 +1,10 @@
 package com.nirhart.parallaxscroll.views;
 
-import java.lang.ref.WeakReference;
-
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.view.View;
+
+import java.lang.ref.WeakReference;
 
 public abstract class ParallaxedView {
 	static public boolean isAPI11 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
@@ -31,6 +31,14 @@ public abstract class ParallaxedView {
 			} else {
 				translatePreICS(view, offset);
 			}
+	}
+
+	@SuppressLint("NewApi")
+	public void setAlpha(float alpha) {
+		View view = this.view.get();
+		if (view != null && isAPI11) {
+			view.setAlpha(alpha);
+		}
 	}
 	
 	public void setView(View view) {

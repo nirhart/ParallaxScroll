@@ -82,8 +82,10 @@ public class ParallaxListViewHelper implements OnScrollListener {
 
 	private void setFilters(int top) {
 		parallaxedView.setOffset((float)top / parallaxFactor);
-		if (alphaFactor != DEFAULT_ALPHA_FACTOR)
-			parallaxedView.setAlpha(100 / ((float)top * alphaFactor));
+		if (alphaFactor != DEFAULT_ALPHA_FACTOR) {
+			float alpha = (top <= 0) ? 1 : (100 / ((float)top * alphaFactor));
+			parallaxedView.setAlpha(alpha);
+		}
 		parallaxedView.animateNow();
 	}
 

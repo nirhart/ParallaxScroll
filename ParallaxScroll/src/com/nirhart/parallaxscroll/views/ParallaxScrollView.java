@@ -11,8 +11,6 @@ import android.widget.ScrollView;
 
 import com.nirhart.parallaxscroll.R;
 
-
-
 public class ParallaxScrollView extends ScrollView {
 
 	private static final int DEFAULT_PARALLAX_VIEWS = 1;
@@ -74,7 +72,8 @@ public class ParallaxScrollView extends ScrollView {
 			parallaxedView.setOffset((float)t / parallax);
 			parallax *= innerParallaxFactor;
 			if (alpha != DEFAULT_ALPHA_FACTOR) {
-				parallaxedView.setAlpha(100 / ((float)t * alpha));
+				float fixedAlpha = (t <= 0) ? 1 : (100 / ((float)t * alpha));
+				parallaxedView.setAlpha(fixedAlpha);
 				alpha /= alphaFactor;
 			}
 			parallaxedView.animateNow();

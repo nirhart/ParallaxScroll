@@ -15,7 +15,7 @@ public abstract class ParallaxedView {
 	static public boolean isAPI11 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
 	protected WeakReference<View> view;
 	protected int lastOffset;
-	List<Animation> animations;
+	protected List<Animation> animations;
 
 	abstract protected void translatePreICS(View view, float offset);
 	

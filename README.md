@@ -19,21 +19,13 @@ Parallax Scrolls
 
 ## Maven repository access
 
-### Modify build.gradle at the root project in this way:
-```
-  allprojects {
-    repositories { 
-      mavenCentral() 
-      maven { 
-        url 'https://oss.sonatype.org/content/groups/public' 
-      } 
-    }
-  }
-```
-### In the build.gradle (at the module level) you add the new dependency:
+### In the build.gradle (at the module level) add the new dependency:
 ```
   compile 'com.github.nirhart:parallaxscroll:1.0'
- ```
+```
+
+or look for it using Android Studio module dependencies
+
 ## Building
 
 ### Using gradle to build.

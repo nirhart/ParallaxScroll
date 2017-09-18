@@ -69,7 +69,7 @@ public class ParallaxScrollView extends ScrollView {
 		float parallax = parallaxFactor;
 		float alpha = alphaFactor;
 		for (ParallaxedView parallaxedView : parallaxedViews) {
-			parallaxedView.setOffset((float)t / parallax);
+			parallaxedView.setOffset(((float)t / parallax), Math.round(t/parallaxFactor));
 			parallax *= innerParallaxFactor;
 			if (alpha != DEFAULT_ALPHA_FACTOR) {
 				float fixedAlpha = (t <= 0) ? 1 : (100 / ((float)t * alpha));

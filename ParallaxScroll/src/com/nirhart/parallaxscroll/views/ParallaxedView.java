@@ -13,9 +13,12 @@ import android.view.animation.AnimationSet;
 
 public abstract class ParallaxedView {
 	static public boolean isAPI11 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+	static public boolean isAPI18 = Build.VERSION.SDK_INT >= 18;
 	protected WeakReference<View> view;
 	protected int lastOffset;
 	protected List<Animation> animations;
+	protected Rect clippingRect = new Rect();
+    protected boolean firstRectGet = false;
 
 	abstract protected void translatePreICS(View view, float offset);
 	
@@ -39,6 +42,35 @@ public abstract class ParallaxedView {
 				translatePreICS(view, offset);
 			}
 	}
+
+	@SuppressLint("NewApi")
+    public void setOffset(float offset, int originalScrollY) {
+        View view = this.view.get();
+        if (view != null)
+            if (isAPI11) {
+                if (!firstRectGet) {
+                    clippingRect.top = view.getTop();
+                    clippingRect.left = view.getLeft();
+                    clippingRect.right = view.getRight();
+                    clippingRect.bottom = view.getBottom();
+                    firstRectGet = true;
+                }
+                int delta = lastScrollY - originalScrollY;
+                clippingRect.bottom += delta;
+                view.setTranslationY(Math.round(offset));
+                if (isAPI18) view.setClipBounds(clippingRect);
+                lastScrollY = originalScrollY;
+                if (isAPI18) {
+                    if (clippingRect.bottom <= clippingRect.top) {
+                        view.setVisibility(View.INVISIBLE);
+                    } else {
+                        view.setVisibility(View.VISIBLE);
+                    }
+                }
+            } else {
+                translatePreICS(view, offset);
+            }
+    }
 
 	public void setAlpha(float alpha) {
 		View view = this.view.get();
